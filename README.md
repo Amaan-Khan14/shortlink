@@ -53,6 +53,7 @@ cd shortlink-web && npm run build
 
 ## Documentation
 
+- **Deployment guide:** `docs/deployment-guide.md` — VPC-first AWS deployment (network → RDS → EC2 → ALB → S3/CloudFront), no CI/CD yet
 - API reference: run the backend and open http://localhost:3000/api/docs (Swagger UI), or see `shortlink-api/src/docs/openapi.js`
 - Backend architecture and database schema: `shortlink-api/README.md`
 - Frontend structure and theming: `shortlink-web/README.md`
