@@ -32,9 +32,22 @@ function localInputToIso(value) {
 
 function StatCard({ label, value }) {
   return (
-    <div className="rounded-md border px-4 py-3">
-      <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className="mt-1 text-2xl font-semibold tabular-nums">{value}</p>
+    <div className="bg-muted px-4 py-4">
+      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </p>
+      <p className="mt-1.5 font-heading text-3xl font-semibold tracking-tight tabular-nums">
+        {value}
+      </p>
+    </div>
+  )
+}
+
+function SectionHeading({ title, aside }) {
+  return (
+    <div className="mb-4 flex flex-wrap items-end justify-between gap-2 border-t-2 border-t-foreground pt-4">
+      <h3 className="font-heading text-base tracking-tight">{title}</h3>
+      {aside}
     </div>
   )
 }
@@ -158,13 +171,13 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
 
   return (
     <section aria-labelledby="dashboard-heading">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" onClick={onBack} className="-ml-2">
             <ArrowLeft {...ICON_PROPS} aria-hidden="true" />
             Back
           </Button>
-          <h2 id="dashboard-heading" className="text-base font-semibold tracking-tight">
+          <h2 id="dashboard-heading" className="font-heading text-xl tracking-tight">
             {link.shortUrl}
           </h2>
           <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -188,7 +201,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
           <Button variant="ghost" size="icon-sm" onClick={handleDelete} aria-label="Delete link">
             <Trash2 {...ICON_PROPS} aria-hidden="true" />
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="h-9" asChild>
             <a href={link.shortUrl} target="_blank" rel="noopener noreferrer">
               <ExternalLink {...ICON_PROPS} aria-hidden="true" />
               Open
@@ -197,7 +210,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
         </div>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-10">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <StatCard label="Total clicks" value={analytics.totals.clicks} />
           <StatCard label="Clicks today" value={analytics.totals.today} />
@@ -205,24 +218,30 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
         </div>
 
         <div>
-          <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold">Clicks over time</h3>
-            <div className="flex gap-1" role="group" aria-label="Time range">
-              {RANGES.map((r) => (
-                <Button
-                  key={r}
-                  variant={days === r ? 'default' : 'ghost'}
-                  size="xs"
-                  onClick={() => setDays(r)}
-                  className={days === r ? 'text-[13px]' : 'text-[13px] text-muted-foreground'}
-                >
-                  {r}d
-                </Button>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-md border px-2 py-4 pr-4">
-            <ChartContainer config={chartConfig} className="h-56 w-full">
+          <SectionHeading
+            title="Clicks over time"
+            aside={
+              <div className="flex gap-1" role="group" aria-label="Time range">
+                {RANGES.map((r) => (
+                  <Button
+                    key={r}
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setDays(r)}
+                    className={
+                      days === r
+                        ? 'bg-foreground text-background hover:bg-foreground/90 hover:text-background'
+                        : 'text-muted-foreground'
+                    }
+                  >
+                    {r}d
+                  </Button>
+                ))}
+              </div>
+            }
+          />
+          <div className="border px-2 py-5 pr-5">
+            <ChartContainer config={chartConfig} className="h-64 w-full">
               <BarChart data={analytics.timeline} margin={{ top: 4, left: 0, right: 0, bottom: 0 }}>
                 <CartesianGrid vertical={false} stroke="var(--border)" />
                 <XAxis
@@ -235,7 +254,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
                   fontSize={12}
                 />
                 <ChartTooltip content={<ChartTooltipContent labelFormatter={(v) => v} />} />
-                <Bar dataKey="clicks" fill="var(--color-clicks)" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="clicks" fill="var(--color-clicks)" radius={[1, 1, 0, 0]} />
               </BarChart>
             </ChartContainer>
           </div>
@@ -249,19 +268,20 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
 
         <BreakdownTable title="Top referrers" rows={analytics.referrers} />
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
-            <h3 className="mb-3 text-sm font-semibold">QR code</h3>
+            <SectionHeading title="QR code" />
             <QrCard shortUrl={link.shortUrl} code={link.code} />
           </div>
 
           <div>
-            <h3 className="mb-3 text-sm font-semibold">Link settings</h3>
-            <form onSubmit={handleSave} className="flex flex-col gap-3 rounded-md border p-4">
+            <SectionHeading title="Link settings" />
+            <form onSubmit={handleSave} className="flex flex-col gap-3 bg-muted p-4">
               <div className="space-y-1.5">
                 <Label htmlFor="settings-url">Destination URL</Label>
                 <Input
                   id="settings-url"
+                  className="h-9 bg-background"
                   value={form.url}
                   onChange={(e) => setForm((f) => ({ ...f, url: e.target.value }))}
                 />
@@ -272,6 +292,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
                   <Input
                     id="settings-expires"
                     type="datetime-local"
+                    className="h-9 bg-background"
                     value={form.expiresLocal}
                     onChange={(e) => setForm((f) => ({ ...f, expiresLocal: e.target.value }))}
                   />
@@ -282,7 +303,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
                     id="settings-collection"
                     value={form.collection}
                     onChange={(e) => setForm((f) => ({ ...f, collection: e.target.value }))}
-                    className="h-8 w-full rounded-md border border-input bg-background px-2 text-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="h-9 w-full rounded-md border border-input bg-background px-2 text-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                   >
                     <option value="">None</option>
                     {collections.map((c) => (
@@ -301,7 +322,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
                 <p className="text-xs text-muted-foreground">
                   Leave expiry empty for a link that never expires.
                 </p>
-                <Button type="submit" size="sm" disabled={saving} className="text-[15px] font-semibold">
+                <Button type="submit" size="sm" disabled={saving} className="h-9 px-4 text-[15px] font-semibold">
                   {saving ? 'Saving…' : 'Save'}
                 </Button>
               </div>

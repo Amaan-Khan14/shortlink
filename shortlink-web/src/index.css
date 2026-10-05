@@ -1,119 +1,121 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/instrument-sans";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
 
 @custom-variant dark (&:is(.dark, .dark *));
 
 /*
-  ShortLink theme — Brainfloss brand.
-  Colors confirmed from brainfloss.com: red #FF3939, ink #14100F, muted #F4F4F5,
-  red hover #D42A2A, typeface Instrument Sans. Everything else is a deliberate
-  default from the design brief. Change the brand in one place: these variables.
+  ShortLink theme — Brainfloss design language (light only).
+  Tokens confirmed from brainfloss.com stylesheets:
+  ink #14100f, text #3a3330, muted #f4f4f5, red #ff3939, hover #d42a2a,
+  soft red #ff6b6b, borders #e4e0de / #dcd8d6, selection #ffd8d8.
+  Body Instrument Sans, headings Poppins 600, square cards, 10px buttons.
+  Change the brand in one place: these variables.
 */
 :root {
-  --radius: 0.375rem;
+  --radius: 0.625rem; /* buttons + inputs; cards stay square like the site */
 
   --background: #ffffff;
-  --foreground: #14100f;
+  --foreground: #14100f; /* ink */
+  --body-text: #3a3330;
+  --muted: #f4f4f5;
+  --muted-foreground: #6b6260;
+  --border: #e4e0de;
+  --divider: #dcd8d6;
+
+  --primary: #ff3939;
+  --primary-foreground: #ffffff;
+  --primary-hover: #d42a2a;
+  --brand-ink: #d42a2a; /* red used for links/text on light */
+  --brand-soft: #ff6b6b; /* red used for accents on dark panels */
+
   --card: #ffffff;
   --card-foreground: #14100f;
   --popover: #ffffff;
   --popover-foreground: #14100f;
-
-  --primary: #ff3939;
-  --primary-foreground: #ffffff;
-  --primary-hover: #d42a2a;
-  --brand-ink: #c81e1e;
-
   --secondary: #f4f4f5;
   --secondary-foreground: #14100f;
-  --muted: #f4f4f5;
-  --muted-foreground: #666666;
   --accent: #f4f4f5;
   --accent-foreground: #14100f;
 
   --destructive: #b42318;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
+  --input: #e4e0de;
   --ring: #ff3939;
 
   --status-online: #16a34a;
 
-  /* Single-series analytics chart: calm neutral, not brand red. */
-  --chart-1: #666666;
-}
+  /* Dark ink panels (footer, like the site's dark sections) */
+  --panel-dark: #14100f;
+  --panel-dark-card: #211a19;
+  --on-dark: #bdb5b3;
+  --on-dark-muted: #a69d9a;
 
-.dark {
-  --background: #0b0b0c;
-  --foreground: #f5f5f5;
-  --card: #0f0f10;
-  --card-foreground: #f5f5f5;
-  --popover: #161617;
-  --popover-foreground: #f5f5f5;
-
-  --primary: #ff3939;
-  --primary-foreground: #ffffff;
-  --primary-hover: #d42a2a;
-  --brand-ink: #ff6b6b;
-
-  --secondary: #161617;
-  --secondary-foreground: #f5f5f5;
-  --muted: #161617;
-  --muted-foreground: #a1a1a1;
-  --accent: #161617;
-  --accent-foreground: #f5f5f5;
-
-  --destructive: #f97066;
-  --border: #262626;
-  --input: #262626;
-  --ring: #ff3939;
-
-  --status-online: #22c55e;
-
-  --chart-1: #a1a1a1;
+  --chart-1: #14100f; /* single-series bars: solid ink */
 }
 
 @theme inline {
   --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui,
     -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Poppins", "Instrument Sans Variable", ui-sans-serif,
+    system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-body-text: var(--body-text);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-divider: var(--divider);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: var(--primary-hover);
   --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-status-online: var(--status-online);
+  --color-panel-dark: var(--panel-dark);
+  --color-panel-dark-card: var(--panel-dark-card);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-muted: var(--on-dark-muted);
   --color-chart-1: var(--chart-1);
 
-  --radius-sm: calc(var(--radius) - 2px);
+  --radius-sm: 0.25rem;
   --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 2px);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  ::selection {
+    background: #ffd8d8;
+    color: var(--foreground);
+  }
   body {
     @apply bg-background text-foreground;
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.55;
     font-variant-numeric: tabular-nums;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }

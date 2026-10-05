@@ -83,9 +83,11 @@ export default function LinkForm({ collections = [], onCreated }) {
 
   return (
     <section aria-labelledby="form-heading">
-      <h2 id="form-heading" className="mb-3 text-base font-semibold tracking-tight">
-        Shorten a link
-      </h2>
+      <div className="mb-4 border-t-2 border-t-foreground pt-4">
+        <h2 id="form-heading" className="font-heading text-lg tracking-tight">
+          Shorten a link
+        </h2>
+      </div>
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3 sm:flex-row sm:items-start">
         <div className="flex-1 space-y-1.5">
           <Label htmlFor="url">Long URL</Label>
@@ -96,6 +98,7 @@ export default function LinkForm({ collections = [], onCreated }) {
             inputMode="url"
             autoComplete="off"
             placeholder="https://example.com/a-very-long-path"
+            className="h-10"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             aria-invalid={fieldErrors.url ? true : undefined}
@@ -115,6 +118,7 @@ export default function LinkForm({ collections = [], onCreated }) {
             type="text"
             autoComplete="off"
             placeholder="e.g. launch-2026"
+            className="h-10"
             value={alias}
             onChange={(e) => setAlias(e.target.value)}
             aria-invalid={fieldErrors.alias ? true : undefined}
@@ -135,6 +139,7 @@ export default function LinkForm({ collections = [], onCreated }) {
             autoComplete="off"
             list="collection-suggestions"
             placeholder="e.g. AWS Workshop"
+            className="h-10"
             value={collection}
             onChange={(e) => setCollection(e.target.value)}
           />
@@ -148,7 +153,7 @@ export default function LinkForm({ collections = [], onCreated }) {
           type="submit"
           size="lg"
           disabled={submitting}
-          className="text-[15px] font-semibold sm:mt-[26px]"
+          className="h-10 px-5 text-[15px] font-semibold sm:mt-[26px]"
         >
           {submitting ? 'Shortening…' : 'Shorten'}
         </Button>
@@ -161,7 +166,7 @@ export default function LinkForm({ collections = [], onCreated }) {
           </Alert>
         )}
         {result && (
-          <div className="mt-4 flex flex-wrap items-center gap-2 rounded-md border bg-muted px-4 py-3">
+          <div className="mt-4 flex flex-wrap items-center gap-2 bg-muted px-4 py-3">
             <span className="text-sm">
               Short link:{' '}
               <a

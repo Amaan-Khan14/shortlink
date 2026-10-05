@@ -64,4 +64,4 @@ In development, Vite proxies `/api` and `/health` to `http://localhost:3000`, so
 
 ## Theming
 
-All design tokens live in `src/index.css` as CSS variables (light in `:root`, dark in `.dark`), mapped to Tailwind through `@theme inline`. The brand red `#FF3939` is `--primary`; change it in one place and buttons, focus rings and links follow. Type is Instrument Sans, bundled locally.
+The app is light-theme only, using the Brainfloss design language confirmed from brainfloss.com: ink `#14100f`, body text `#3a3330`, muted `#f4f4f5` panels, warm `#e4e0de` borders, red `#ff3939` (hover `#d42a2a`), Instrument Sans body with Poppins headings, square cards, 10px buttons and 2px top-border section headings. All tokens live in `src/index.css` as CSS variables mapped to Tailwind through `@theme inline`; change `--primary` in one place and buttons, focus rings and links follow. The layout is full-width with responsive gutters (`px-5 / sm:px-8 / lg:px-12`).

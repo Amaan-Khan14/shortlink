@@ -49,32 +49,32 @@ export default function QrCard({ shortUrl, code }) {
 
   if (failed) {
     return (
-      <div className="rounded-md border p-4 text-sm text-muted-foreground">
+      <div className="bg-muted p-4 text-sm text-muted-foreground">
         QR code could not be generated.
       </div>
     )
   }
 
   return (
-    <div className="flex items-start gap-4 rounded-md border p-4">
+    <div className="flex items-start gap-4 bg-muted p-4">
       {dataUrl ? (
         <img
           src={dataUrl}
           alt={`QR code for ${shortUrl}`}
-          width={120}
-          height={120}
-          className="size-[120px] rounded-sm border bg-white p-1.5"
+          width={128}
+          height={128}
+          className="size-32 border border-divider bg-white p-2"
         />
       ) : (
         <div
-          className="size-[120px] animate-pulse rounded-sm border bg-muted p-1.5"
+          className="size-32 animate-pulse border border-divider bg-white/60 p-2"
           aria-hidden="true"
         />
       )}
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Scan to open this link.</p>
+        <p className="text-sm text-body-text">Scan to open this link.</p>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="h-9" asChild>
             <a href={dataUrl ?? '#'} download={`shortlink-${code}.png`}>
               <Download {...ICON_PROPS} aria-hidden="true" />
               Download PNG
@@ -83,6 +83,7 @@ export default function QrCard({ shortUrl, code }) {
           <Button
             variant="outline"
             size="sm"
+            className="h-9"
             onClick={handleCopyImage}
             disabled={!dataUrl}
           >

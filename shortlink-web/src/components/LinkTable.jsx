@@ -108,7 +108,7 @@ export default function LinkTable({
               target="_blank"
               rel="noopener noreferrer"
               title={link.url}
-              className="block max-w-[18rem] truncate text-muted-foreground hover:text-brand-ink hover:underline"
+              className="block max-w-[36rem] truncate text-muted-foreground hover:text-brand-ink hover:underline"
             >
               {link.url}
             </a>
@@ -154,8 +154,8 @@ export default function LinkTable({
 
   return (
     <section aria-labelledby="links-heading">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h2 id="links-heading" className="text-base font-semibold tracking-tight">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3 border-t-2 border-t-foreground pt-4">
+        <h2 id="links-heading" className="font-heading text-lg tracking-tight">
           Recent links
         </h2>
         <div className="flex items-center gap-2">
@@ -166,7 +166,7 @@ export default function LinkTable({
             id="collection-filter"
             value={collectionFilter}
             onChange={(e) => onFilterChange(e.target.value)}
-            className="h-8 rounded-md border border-input bg-background px-2 text-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+            className="h-9 rounded-md border border-input bg-background px-2 text-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
           >
             <option value="">All</option>
             {collections.map((c) => (
@@ -175,23 +175,23 @@ export default function LinkTable({
               </option>
             ))}
           </select>
-          <Button variant="outline" size="sm" onClick={onRefresh}>
+          <Button variant="outline" size="sm" className="h-9" onClick={onRefresh}>
             <RefreshCw {...ICON_PROPS} aria-hidden="true" />
             Refresh
           </Button>
         </div>
       </div>
-      <div className="overflow-x-auto rounded-md border">
+      <div className="overflow-x-auto border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted hover:bg-muted">
-              <TableHead className="pl-4 text-xs uppercase tracking-wide">Short link</TableHead>
-              <TableHead className="text-xs uppercase tracking-wide">Original URL</TableHead>
-              <TableHead className="text-xs uppercase tracking-wide">Collection</TableHead>
-              <TableHead className="text-right text-xs uppercase tracking-wide">Clicks</TableHead>
-              <TableHead className="text-xs uppercase tracking-wide">Status</TableHead>
-              <TableHead className="text-right text-xs uppercase tracking-wide">Created</TableHead>
-              <TableHead className="pr-4 text-right text-xs uppercase tracking-wide">
+              <TableHead className="pl-4 text-[11px] uppercase tracking-[0.12em]">Short link</TableHead>
+              <TableHead className="text-[11px] uppercase tracking-[0.12em]">Original URL</TableHead>
+              <TableHead className="text-[11px] uppercase tracking-[0.12em]">Collection</TableHead>
+              <TableHead className="text-right text-[11px] uppercase tracking-[0.12em]">Clicks</TableHead>
+              <TableHead className="text-[11px] uppercase tracking-[0.12em]">Status</TableHead>
+              <TableHead className="text-right text-[11px] uppercase tracking-[0.12em]">Created</TableHead>
+              <TableHead className="pr-4 text-right text-[11px] uppercase tracking-[0.12em]">
                 <span className="sr-only">Actions</span>
               </TableHead>
             </TableRow>

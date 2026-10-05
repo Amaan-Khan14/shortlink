@@ -60,12 +60,14 @@ export default function App() {
     : links
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+    <div className="flex min-h-screen flex-col">
+      <header className="border-b bg-background">
+        <div className="flex w-full items-center justify-between gap-3 px-5 py-5 sm:px-8 lg:px-12">
           <div>
-            <p className="text-lg font-semibold tracking-tight">ShortLink</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="font-heading text-xl font-semibold tracking-tight">
+              ShortLink<span className="text-primary">.</span>
+            </p>
+            <p className="text-sm text-body-text">
               URL management and click analytics.
             </p>
           </div>
@@ -73,7 +75,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="mx-auto flex max-w-4xl flex-col gap-8 px-4 py-8 sm:px-6">
+      <main className="flex w-full flex-1 flex-col gap-10 px-5 py-8 sm:px-8 lg:px-12">
         {view.name === 'list' ? (
           <>
             <LinkForm
@@ -106,6 +108,17 @@ export default function App() {
           />
         )}
       </main>
+
+      <footer className="bg-panel-dark">
+        <div className="flex w-full flex-wrap items-center justify-between gap-2 px-5 py-6 sm:px-8 lg:px-12">
+          <p className="text-sm text-on-dark-muted">
+            ShortLink — a DevOps with AWS workshop project.
+          </p>
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-brand-soft">
+            Brainfloss
+          </p>
+        </div>
+      </footer>
 
       <Toaster position="bottom-right" />
     </div>
