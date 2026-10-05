@@ -1,0 +1,24 @@
+{
+  "name": "shortlink-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ShortLink URL shortener API (workshop demo app)",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node --env-file=.env src/server.js",
+    "dev": "node --env-file=.env --watch src/server.js",
+    "test": "jest",
+    "db:init": "node --env-file=.env scripts/init-db.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}

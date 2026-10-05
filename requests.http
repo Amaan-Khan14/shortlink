@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:3000
+
+### Create a link (generated code)
+POST {{baseUrl}}/api/links
+Content-Type: application/json
+
+{
+  "url": "https://example.com/some/very/long/path?with=query=params"
+}
+
+### Create a link with a custom alias
+POST {{baseUrl}}/api/links
+Content-Type: application/json
+
+{
+  "url": "https://example.com/docs",
+  "alias": "my-docs"
+}
+
+### List links (newest first)
+GET {{baseUrl}}/api/links
+
+### Redirect: resolve a short code (expect 302)
+GET {{baseUrl}}/abc123
+
+### Health check
+GET {{baseUrl}}/health
