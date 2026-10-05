@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import StatusBadge from '@/components/StatusBadge'
+import Logo from '@/components/Logo'
 import LinkForm from '@/components/LinkForm'
 import LinkTable from '@/components/LinkTable'
 import LinkDashboard from '@/components/LinkDashboard'
@@ -64,10 +65,8 @@ export default function App() {
       <header className="border-b bg-background">
         <div className="flex w-full items-center justify-between gap-3 px-5 py-5 sm:px-8 lg:px-12">
           <div>
-            <p className="font-heading text-xl font-semibold tracking-tight">
-              ShortLink<span className="text-primary">.</span>
-            </p>
-            <p className="text-sm text-body-text">
+            <Logo />
+            <p className="mt-0.5 text-sm text-body-text">
               URL management and click analytics.
             </p>
           </div>

@@ -36,13 +36,17 @@ In development, Vite proxies `/api` and `/health` to `http://localhost:3000`, so
 - Per-link analytics dashboard: totals, clicks-over-time chart, device/browser/OS breakdowns, top referrers
 - Link settings in the dashboard: edit URL, expiration, collection, enable/disable, delete
 - QR code per link, generated client-side: download PNG or copy the image
-- Health badge polling every 15 seconds; dark mode follows the OS setting
+- Health badge polling every 15 seconds
+- Light theme with the Brainfloss design language; full-width layout
 
 ## Project layout
 
+- `index.html` — HTML shell (favicon + theme-color links)
+- `public/` — `favicon.svg`, PNG favicons, `logo-512.png` mark
 - `src/App.jsx` — page shell; owns list state, view switching (list ↔ dashboard), polling
 - `src/api.js` — fetch wrapper; standardized `{error:{code,message}}` parsing
 - `src/validation.js` — client-side URL/alias checks mirroring the backend
+- `src/components/Logo.jsx` — header logo (red slash mark + wordmark)
 - `src/components/LinkForm.jsx` — create form
 - `src/components/LinkTable.jsx` — links table with filters and row actions
 - `src/components/LinkDashboard.jsx` — analytics dashboard + link settings

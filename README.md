@@ -1,5 +1,9 @@
 # ShortLink
 
+<p align="left">
+  <img src="shortlink-web/public/logo-512.png" width="56" alt="ShortLink logo" align="top" />
+</p>
+
 A full-stack URL management and click analytics platform, built as the demo application for a 2-day "DevOps with AWS" workshop. It is intentionally small enough to understand completely, but real enough to deploy and put on a resume.
 
 ## What's inside
