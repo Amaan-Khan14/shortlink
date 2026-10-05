@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/instrument-sans";
+
+@custom-variant dark (&:is(.dark, .dark *));
+
+/*
+  ShortLink theme — Brainfloss brand.
+  Colors confirmed from brainfloss.com: red #FF3939, ink #14100F, muted #F4F4F5,
+  red hover #D42A2A, typeface Instrument Sans. Everything else is a deliberate
+  default from the design brief. Change the brand in one place: these variables.
+*/
+:root {
+  --radius: 0.375rem;
+
+  --background: #ffffff;
+  --foreground: #14100f;
+  --card: #ffffff;
+  --card-foreground: #14100f;
+  --popover: #ffffff;
+  --popover-foreground: #14100f;
+
+  --primary: #ff3939;
+  --primary-foreground: #ffffff;
+  --primary-hover: #d42a2a;
+  --brand-ink: #c81e1e;
+
+  --secondary: #f4f4f5;
+  --secondary-foreground: #14100f;
+  --muted: #f4f4f5;
+  --muted-foreground: #666666;
+  --accent: #f4f4f5;
+  --accent-foreground: #14100f;
+
+  --destructive: #b42318;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #ff3939;
+
+  --status-online: #16a34a;
+}
+
+.dark {
+  --background: #0b0b0c;
+  --foreground: #f5f5f5;
+  --card: #0f0f10;
+  --card-foreground: #f5f5f5;
+  --popover: #161617;
+  --popover-foreground: #f5f5f5;
+
+  --primary: #ff3939;
+  --primary-foreground: #ffffff;
+  --primary-hover: #d42a2a;
+  --brand-ink: #ff6b6b;
+
+  --secondary: #161617;
+  --secondary-foreground: #f5f5f5;
+  --muted: #161617;
+  --muted-foreground: #a1a1a1;
+  --accent: #161617;
+  --accent-foreground: #f5f5f5;
+
+  --destructive: #f97066;
+  --border: #262626;
+  --input: #262626;
+  --ring: #ff3939;
+
+  --status-online: #22c55e;
+}
+
+@theme inline {
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-brand-ink: var(--brand-ink);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-status-online: var(--status-online);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 15px;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
+}
