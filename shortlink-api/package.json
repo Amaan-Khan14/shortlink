@@ -14,8 +14,12 @@
     "db:init": "node --env-file=.env scripts/init-db.js"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^4.21.2",
-    "pg": "^8.13.1"
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "pg": "^8.13.1",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",

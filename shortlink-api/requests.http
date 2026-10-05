@@ -1,27 +1,60 @@
+### ShortLink API — example requests (VS Code REST Client)
+### Start the backend with `npm run dev` first.
 @baseUrl = http://localhost:3000
+
+### Root info
+GET {{baseUrl}}/
+
+### Health (DB check)
+GET {{baseUrl}}/health
+
+### Readiness
+GET {{baseUrl}}/ready
 
 ### Create a link (generated code)
 POST {{baseUrl}}/api/links
 Content-Type: application/json
 
-{
-  "url": "https://example.com/some/very/long/path?with=query=params"
-}
+{ "url": "https://example.com/a-very-long-url" }
 
-### Create a link with a custom alias
+### Create a link with alias, expiry and collection
 POST {{baseUrl}}/api/links
 Content-Type: application/json
 
-{
-  "url": "https://example.com/docs",
-  "alias": "my-docs"
-}
+{ "url": "https://example.com/slides", "alias": "aws-slides", "expiresAt": "2027-01-01T00:00:00Z", "collection": "AWS Workshop" }
 
 ### List links (newest first)
 GET {{baseUrl}}/api/links
 
-### Redirect: resolve a short code (expect 302)
+### Link details
+GET {{baseUrl}}/api/links/aws-slides
+
+### Update a link (disable it)
+PATCH {{baseUrl}}/api/links/aws-slides
+Content-Type: application/json
+
+{ "isEnabled": false }
+
+### Update a link (new URL + clear expiry)
+PATCH {{baseUrl}}/api/links/aws-slides
+Content-Type: application/json
+
+{ "url": "https://example.com/updated", "expiresAt": null }
+
+### Link analytics (last 30 days)
+GET {{baseUrl}}/api/links/aws-slides/analytics?days=30
+
+### Delete a link
+DELETE {{baseUrl}}/api/links/aws-slides
+
+### Redirect (follow manually; records a click)
 GET {{baseUrl}}/abc123
 
-### Health check
-GET {{baseUrl}}/health
+### Collections
+GET {{baseUrl}}/api/collections
+
+### Audit trail
+GET {{baseUrl}}/api/audit?limit=10
+
+### API docs (Swagger UI)
+GET {{baseUrl}}/api/docs/
