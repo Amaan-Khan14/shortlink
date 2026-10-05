@@ -12,7 +12,7 @@ async function main() {
 
   const pool = new Pool({
     connectionString: config.databaseUrl,
-    ssl: config.ssl ? { rejectUnauthorized: false } : undefined,
+    ssl: config.dbSsl ? { rejectUnauthorized: false } : undefined,
   });
 
   try {
