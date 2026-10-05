@@ -32,9 +32,10 @@ async function copyText(text) {
   }
 }
 
-export default function LinkForm({ onCreated }) {
+export default function LinkForm({ collections = [], onCreated }) {
   const [url, setUrl] = useState('')
   const [alias, setAlias] = useState('')
+  const [collection, setCollection] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
   const [apiError, setApiError] = useState(null)
   const [submitting, setSubmitting] = useState(false)
@@ -56,10 +57,12 @@ export default function LinkForm({ onCreated }) {
       const link = await createLink({
         url: url.trim(),
         alias: alias.trim() || undefined,
+        collection: collection.trim() || undefined,
       })
       setResult(link)
       setUrl('')
       setAlias('')
+      setCollection('')
       if (onCreated) onCreated()
     } catch (err) {
       setApiError(
@@ -104,7 +107,7 @@ export default function LinkForm({ onCreated }) {
             </p>
           )}
         </div>
-        <div className="w-full space-y-1.5 sm:w-52">
+        <div className="w-full space-y-1.5 sm:w-44">
           <Label htmlFor="alias">Custom alias (optional)</Label>
           <Input
             id="alias"
@@ -122,6 +125,24 @@ export default function LinkForm({ onCreated }) {
               {fieldErrors.alias}
             </p>
           )}
+        </div>
+        <div className="w-full space-y-1.5 sm:w-44">
+          <Label htmlFor="collection">Collection (optional)</Label>
+          <Input
+            id="collection"
+            name="collection"
+            type="text"
+            autoComplete="off"
+            list="collection-suggestions"
+            placeholder="e.g. AWS Workshop"
+            value={collection}
+            onChange={(e) => setCollection(e.target.value)}
+          />
+          <datalist id="collection-suggestions">
+            {collections.map((c) => (
+              <option key={c.id} value={c.name} />
+            ))}
+          </datalist>
         </div>
         <Button
           type="submit"
