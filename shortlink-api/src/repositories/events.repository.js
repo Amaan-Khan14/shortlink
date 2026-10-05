@@ -60,7 +60,7 @@ function createEventsRepository(pool) {
       [linkId]
     )
     const timeline = await pool.query(
-      `SELECT date_trunc('day', occurred_at)::date AS day, count(*)::int AS clicks
+      `SELECT to_char(date_trunc('day', occurred_at), 'YYYY-MM-DD') AS day, count(*)::int AS clicks
        FROM link_events
        WHERE link_id = $1 AND occurred_at >= now() - make_interval(days => $2)
        GROUP BY 1 ORDER BY 1`,

@@ -230,7 +230,7 @@ export default function LinkDashboard({ code, collections, onBack, onChanged }) 
                     onClick={() => setDays(r)}
                     className={
                       days === r
-                        ? 'bg-foreground text-background hover:bg-foreground/90 hover:text-background'
+                        ? 'bg-primary text-primary-foreground hover:bg-primary-hover hover:text-primary-foreground'
                         : 'text-muted-foreground'
                     }
                   >

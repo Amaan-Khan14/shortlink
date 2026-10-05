@@ -109,12 +109,12 @@ export default function App() {
         )}
       </main>
 
-      <footer className="bg-panel-dark">
+      <footer className="border-t bg-muted">
         <div className="flex w-full flex-wrap items-center justify-between gap-2 px-5 py-6 sm:px-8 lg:px-12">
-          <p className="text-sm text-on-dark-muted">
+          <p className="text-sm text-muted-foreground">
             ShortLink — a DevOps with AWS workshop project.
           </p>
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-brand-soft">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-brand-ink">
             Brainfloss
           </p>
         </div>
