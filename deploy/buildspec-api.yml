@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+  build:
+    commands:
+      - npm --prefix shortlink-api ci
+      - npm --prefix shortlink-api test
+artifacts:
+  files:
+    - appspec.yml
+    - deploy/hooks/**/*
+    - shortlink-api/**/*
+  exclude-paths:
+    - shortlink-api/node_modules/**/*
+    - shortlink-api/.env
+    - shortlink-api/.env.*

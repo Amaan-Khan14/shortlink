@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+  build:
+    commands:
+      - npm --prefix shortlink-web ci
+      - npm --prefix shortlink-web test
+      - npm --prefix shortlink-web run build
+artifacts:
+  files:
+    - shortlink-web/dist/**/*
+    - deploy/buildspec-web-deploy.yml
+  exclude-paths:
+    - shortlink-web/dist/**/*.map

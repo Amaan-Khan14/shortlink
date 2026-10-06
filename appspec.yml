@@ -1,0 +1,30 @@
+version: 0.0
+os: linux
+files:
+  - source: shortlink-api
+    destination: /opt/shortlink/app
+file_exists_behavior: OVERWRITE
+permissions:
+  - object: /opt/shortlink/app
+    owner: ubuntu
+    group: ubuntu
+    type:
+      - file
+      - directory
+hooks:
+  BeforeInstall:
+    - location: deploy/hooks/before_install.sh
+      timeout: 60
+      runas: root
+  AfterInstall:
+    - location: deploy/hooks/after_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: deploy/hooks/start.sh
+      timeout: 60
+      runas: root
+  ValidateService:
+    - location: deploy/hooks/validate.sh
+      timeout: 120
+      runas: root

@@ -1,0 +1,7 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - test -f shortlink-web/dist/index.html
+      - aws s3 sync shortlink-web/dist/ s3://shortlink-web-http-053169953891-ap-south-1/ --delete --region ap-south-1
+      - aws s3 cp shortlink-web/dist/index.html s3://shortlink-web-http-053169953891-ap-south-1/index.html --cache-control 'no-cache' --content-type 'text/html' --region ap-south-1
